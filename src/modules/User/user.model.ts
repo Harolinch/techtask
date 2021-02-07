@@ -13,7 +13,7 @@ export interface UserDoc extends Document, UserAttributes { }
 
 interface UserModel extends Model<UserDoc> { }
 
-const userlSchema = new Schema({
+const userlSchema = new Schema<UserDoc, UserModel>({
     name: {
         type: String,
         required: true,

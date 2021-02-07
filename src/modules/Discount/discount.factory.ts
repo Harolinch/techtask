@@ -3,6 +3,7 @@ import { UserDoc } from "../User/user.model";
 import EmployeeDiscount from './employeeDiscount.strategy';
 import AffiliateDiscount from "./affiliateDiscount.strategy";
 import CustomerDiscount from "./customerDiscount.strategy";
+import Discount from "./discount.strategy";
 
 class DiscountFactory {
     private _user: UserDoc;
@@ -11,16 +12,19 @@ class DiscountFactory {
         this._user = user;
     }
 
-    public getInstance(user: UserDoc) {
-        if(user.type == UserType.EMPLOYEE) {
+    public getInstance(): Discount {
+        if(this._user.type == UserType.EMPLOYEE) {
             return new EmployeeDiscount(this._user);
         } else 
-        if(user.type == UserType.AFFILIATE) {
+        if(this._user.type == UserType.AFFILIATE) {
             return new AffiliateDiscount(this._user);
         } else 
-        if(user.type == UserType.CUSTOMER) {
+        if(this._user.type == UserType.CUSTOMER) {
+            return new CustomerDiscount(this._user);
+        } else {
             return new CustomerDiscount(this._user);
         }
     }
 }
 
+export default DiscountFactory;

@@ -1,5 +1,5 @@
 import BillStatus from './billStatus.enum';
-import mongoose, { Document, Model, Schema, Types } from 'mongoose';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
 interface BillAttributes {
     userId: string,
@@ -11,12 +11,13 @@ export interface BillDoc extends Document, BillAttributes { }
 
 interface BillModel extends Model<BillDoc> { }
 
-const billSchema = new Schema({
+const billSchema = new Schema<BillDoc, BillModel>({
     userId: {
-        type: String,
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
         required: true,
     },
-    products: [{ type: Types.ObjectId, ref: 'Product' }],
+    products: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
     status: { type: Number, enum: Object.values(BillStatus), default: BillStatus.UNPAID }
 });
 
