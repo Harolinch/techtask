@@ -1,4 +1,4 @@
-import ProductType from '@enums/productType.enum';
+import ProductType from './productType.enum';
 import mongoose, { Document, Model, Schema } from 'mongoose';
 
 interface ProductAttributes {
@@ -7,7 +7,7 @@ interface ProductAttributes {
     type: ProductType,
 }
 
-interface ProductDoc extends Document, ProductAttributes { };
+export interface ProductDoc extends Document, ProductAttributes { };
 
 interface ProductModel extends Model<ProductDoc> { }
 

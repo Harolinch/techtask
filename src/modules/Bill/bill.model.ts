@@ -1,4 +1,4 @@
-import BillStatus from '@enums/billStatus.enum';
+import BillStatus from './billStatus.enum';
 import mongoose, { Document, Model, Schema, Types } from 'mongoose';
 
 interface BillAttributes {
@@ -7,7 +7,7 @@ interface BillAttributes {
     status: BillStatus;
 }
 
-interface BillDoc extends Document, BillAttributes { }
+export interface BillDoc extends Document, BillAttributes { }
 
 interface BillModel extends Model<BillDoc> { }
 
